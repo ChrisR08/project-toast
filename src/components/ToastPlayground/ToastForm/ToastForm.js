@@ -1,25 +1,21 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 import TextAreaRow from "./TextAreaRow";
 import VariantsRow from "./VariantsRow";
 import ButtonRow from "./ButtonRow";
 
 import styles from "../ToastPlayground.module.css";
+import { ToastContext } from "../../ToastProvider";
 
-function ToastForm({ setToast }) {
-    const [message, setMessage] = useState();
+function ToastForm() {
+    const [message, setMessage] = useState("");
     const [variant, setVariant] = useState(`notice`);
+
+    const { createToast } = useContext(ToastContext);
 
     function submitToastMsg(e) {
         e.preventDefault();
-        setToast((currentToast) => [
-            ...currentToast,
-            {
-                message,
-                variant,
-                id: crypto.randomUUID(),
-            },
-        ]);
+        createToast(message, variant);
         setMessage("");
         setVariant("notice");
     }

@@ -1,8 +1,14 @@
-import { memo } from "react";
+import { memo, useRef, useEffect } from "react";
 
 import styles from "../../ToastPlayground.module.css";
 
 function TextAreaRow({ message, setMessage }) {
+    const textareaRef = useRef();
+
+    useEffect(() => {
+        textareaRef.current.focus();
+    }, [message]);
+
     return (
         <div className={styles.row}>
             <label
@@ -18,6 +24,7 @@ function TextAreaRow({ message, setMessage }) {
                     className={styles.messageInput}
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
+                    ref={textareaRef}
                 />
             </div>
         </div>

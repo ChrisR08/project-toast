@@ -4,7 +4,6 @@ import Button from "../../../Button";
 import styles from "../../ToastPlayground.module.css";
 
 function ButtonRow() {
-    console.log(`btn row rendered`);
     return (
         <div className={styles.row}>
             <div className={styles.label} />
